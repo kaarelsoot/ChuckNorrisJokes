@@ -1,7 +1,6 @@
 <template>
-  <div class="joke">
-    <p>Joke text haha</p>
-    <p>NUPP vms</p>
+  <div class="joke" @click="">
+    <p>{{ joke.value }}</p>
   </div>
 </template>
 
@@ -9,7 +8,7 @@
 export default {
   name: "joke",
   props: {
-    name: String
+    joke: Object
   }
 };
 </script>

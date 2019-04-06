@@ -9,7 +9,7 @@ export default new Vuex.Store({
         isLoading: true,
         categories: [],
         jokes: [],
-        activeCategory: "explicit",
+        activeCategory: undefined,
         activeItem: undefined
     },
     mutations: {
@@ -40,15 +40,15 @@ export default new Vuex.Store({
 
     },
     actions: {
-        fetchCategories(context) {
-            context.commit('setLoadingStatus', true);
+        fetchCategories({ commit }) {
+            commit('setLoadingStatus', true);
             axios.get('https://api.chucknorris.io/jokes/categories').then(response => {
-                context.commit('setLoadingStatus', false);
-                context.commit('setCategories', response.data);
-                context.commit('createJokesContainer', response.data)
+                commit('setLoadingStatus', false);
+                commit('setCategories', response.data);
+                commit('createJokesContainer', response.data)
             })
         },
-        fetchJoke(context) {
+        fetchJokes(context) {
             let category = context.state.activeCategory;
             // context.commit('setLoadingStatus', true);
             let url = "https://api.chucknorris.io/jokes/random?category=" + category;
@@ -61,9 +61,12 @@ export default new Vuex.Store({
                 })
             }
         },
-        selectCategory(context, payload) {
+        selectCategory( { commit, dispatch, state }, payload) {
             let category = payload.category;
-            context.commit('setActiveCategory', category);
+            commit('setActiveCategory', category);
+            if (state.jokes[category].length === 0) {
+                dispatch("fetchJokes");
+            }
 
         }
     },

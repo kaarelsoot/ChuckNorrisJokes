@@ -1,6 +1,7 @@
 <template>
   <div class="jokes">
-    <Joke></Joke>
+    <div @click="goBack" class="backButton">back</div>
+    <Joke v-for="joke in jokes" :joke="joke"></Joke>
   </div>
 </template>
 
@@ -16,8 +17,14 @@ export default {
     category: String
   },
   computed: {
-    categories() {
-      return this.$store.getters.getCategories;
+    jokes() {
+      let category = this.$store.state.activeCategory;
+      return this.$store.state.jokes[category];
+    }
+  },
+  methods: {
+    goBack() {
+      this.$store.dispatch("selectCategory", { category: undefined });
     }
   }
 };
@@ -25,5 +32,9 @@ export default {
 <style scoped>
   .jokes {
     border: 2px solid green;
+  }
+  .backButton {
+    background-color: lightgreen;
+    margin: 5px;
   }
 </style>

@@ -1,18 +1,20 @@
 <template>
   <div>
-    <p>ACTIVE CATEGORY: {{ $store.state.activeCategory }}</p>
-    <button @click="getJoke()">GET JOKE</button>
-    <Jokes v-if="!$store.state.isLoading" :category="'explicit'"></Jokes>
-    <div v-if="$store.state.isLoading">
+    <div id="loadingIndicator" v-if="$store.state.isLoading">
       <p>loading</p>
     </div>
     <div v-if="!$store.state.isLoading">
-      <p>done</p>
-      <ul>
-        <div v-for="category in categories">
+      <p>ACTIVE CATEGORY: {{ $store.state.activeCategory }}</p>
+      <button @click="getJokes()">GET JOKE</button>
+      <Jokes v-if="$store.state.activeCategory" :category="'explicit'"></Jokes>
+
+      <div id="categories" v-if="!$store.state.activeCategory">
+        <ul>
+          <div v-for="category in categories">
             <Category :name="category"></Category>
-        </div>
-      </ul>
+          </div>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -39,8 +41,8 @@ export default {
     }
   },
   methods: {
-    getJoke() {
-      this.$store.dispatch("fetchJoke");
+    getJokes() {
+      this.$store.dispatch("fetchJokes");
     }
   }
 };
