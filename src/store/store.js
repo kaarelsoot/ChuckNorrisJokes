@@ -29,9 +29,11 @@ export default new Vuex.Store({
         pushJokeToCategory(state, payload) {
             let categoryName = payload.category;
             let activeCategory = state.jokes[categoryName];
-            //
             if (activeCategory) {
-                activeCategory.push(payload.joke);
+                let objectExists = activeCategory.find(e => e.id === payload.joke.id);
+                if (!objectExists && activeCategory.length < 3) {
+                    activeCategory.push(payload.joke);
+                }
             }
         },
         setActiveCategory(state, category) {
@@ -59,15 +61,25 @@ export default new Vuex.Store({
         },
         fetchJokes(context) {
             let category = context.state.activeCategory;
-            // context.commit('setLoadingStatus', true);
-            let url = "https://api.chucknorris.io/jokes/random?category=" + category;
-            for (let i = 0; i < 3; i++) {
-                axios.get(url).then(response => {
+            context.commit('setLoadingStatus', true);
+            axios.all([
+                request(),
+                request(),
+                request(),
+                request()
+            ]).then(() => {
+                context.commit('setLoadingStatus', false)
+            });
+
+            async function request() {
+                let url = "https://api.chucknorris.io/jokes/random?category=" + category;
+
+                await axios.get(url).then(response => {
                     context.commit('pushJokeToCategory', {
                         joke: response.data,
                         category: category
                     });
-                })
+                });
             }
         },
         selectCategory( { commit, dispatch, state }, payload) {
