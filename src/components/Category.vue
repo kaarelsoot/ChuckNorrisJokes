@@ -1,7 +1,7 @@
 <template>
   <div class="category" @click="selectCategory">
     <p>category: {{ name }}</p>
-    <p>stars: 0</p>
+    <p>stars: {{ favoriteCount }}</p>
   </div>
 </template>
 
@@ -11,11 +11,14 @@ export default {
   props: {
     name: String
   },
+  computed: {
+    favoriteCount() {
+      return this.$store.getters.getFavoriteCount(this.name);
+    }
+  },
   methods: {
     selectCategory() {
       let categoryName = this.name;
-      console.log("SELECT CATEGORY: categoryName");
-      console.log(categoryName);
       this.$store.dispatch("selectCategory", { category: categoryName });
     }
   }

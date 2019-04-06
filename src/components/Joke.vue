@@ -1,6 +1,7 @@
 <template>
-  <div class="joke" @click="">
+  <div class="joke" @click="toggleFavoriteStatus">
     <p>{{ joke.value }}</p>
+    <p v-if="joke.favorite">fav!</p>
   </div>
 </template>
 
@@ -9,6 +10,15 @@ export default {
   name: "joke",
   props: {
     joke: Object
+  },
+  methods: {
+    toggleFavoriteStatus() {
+      if (this.joke.favorite) {
+        this.$store.commit("removeJokeFromFavorites", { jokeId: this.joke.id });
+      } else {
+        this.$store.commit("addJokeToFavorites", { jokeId: this.joke.id });
+      }
+    }
   }
 };
 </script>

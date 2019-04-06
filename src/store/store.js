@@ -36,8 +36,17 @@ export default new Vuex.Store({
         },
         setActiveCategory(state, category) {
             state.activeCategory = category;
+        },
+        addJokeToFavorites(state, payload) {
+            let jokes = state.jokes[state.activeCategory];
+            let matchingObject = jokes.find(e => e.id === payload.jokeId);
+            Vue.set(matchingObject, 'favorite', true)
+        },
+        removeJokeFromFavorites(state, payload) {
+            let jokes = state.jokes[state.activeCategory];
+            let matchingObject = jokes.find(e => e.id === payload.jokeId);
+            Vue.set(matchingObject, 'favorite', undefined)
         }
-
     },
     actions: {
         fetchCategories({ commit }) {
@@ -67,12 +76,19 @@ export default new Vuex.Store({
             if (state.jokes[category] && state.jokes[category].length === 0) {
                 dispatch("fetchJokes");
             }
-
         }
     },
     getters: {
         getCategories: state => {
             return state.categories;
+        },
+        getFavoriteCount: (state) => (category) => {
+            let count = 0;
+            let jokes = state.jokes[category];
+            jokes.forEach(e => {
+                if (e.favorite) count ++;
+            });
+            return count;
         }
     }
 });
