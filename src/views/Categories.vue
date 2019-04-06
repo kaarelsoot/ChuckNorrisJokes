@@ -5,7 +5,6 @@
     </div>
     <div v-if="!$store.state.isLoading">
       <p>ACTIVE CATEGORY: {{ $store.state.activeCategory }}</p>
-      <button @click="getJokes()">GET JOKE</button>
       <Jokes v-if="$store.state.activeCategory" :category="'explicit'"></Jokes>
 
       <div id="categories" v-if="!$store.state.activeCategory">
@@ -41,9 +40,6 @@ export default {
     }
   },
   methods: {
-    getJokes() {
-      this.$store.dispatch("fetchJokes");
-    }
   }
 };
 </script>

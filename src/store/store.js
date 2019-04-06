@@ -64,7 +64,7 @@ export default new Vuex.Store({
         selectCategory( { commit, dispatch, state }, payload) {
             let category = payload.category;
             commit('setActiveCategory', category);
-            if (state.jokes[category].length === 0) {
+            if (state.jokes[category] && state.jokes[category].length === 0) {
                 dispatch("fetchJokes");
             }
 
