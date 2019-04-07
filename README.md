@@ -1,29 +1,16 @@
 # Chuck Norris Jokes
 
-## Project setup
-```
-npm install
-```
+## Instructions
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+1. Navigate to [repo](https://github.com/kaarelsoot/ChuckNorrisJokes)
+2. Clone locally using
+   `git clone https://github.com/kaarelsoot/ChuckNorrisJokes.git`
+3. Install dependencies using `npm install`
+4. Start your server using `npm run serve`
+5. Navigate to app in [browser](http://localhost:8080/)
+6. Enjoy Chuck Norris jokes!
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## About
 
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+The application was built with [Vue.js](https://vuejs.org/) and [Vuex](https://vuex.vuejs.org/).
+Scaffolding for this app was generated using [Vue CLI](https://cli.vuejs.org/).
