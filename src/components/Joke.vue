@@ -1,7 +1,7 @@
 <template>
-  <div class="joke" @click="toggleFavoriteStatus">
+  <div class="joke item" @click="toggleFavoriteStatus">
     <p>{{ joke.value }}</p>
-    <p v-if="joke.favorite">fav!</p>
+    <font-awesome-icon icon="star" v-if="joke.favorite" class="full-star"/>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
 
 <style scoped>
   .joke {
-    margin: 5px;
-    border: 1px solid blue;
+    margin: 1rem;
+    padding: 1rem;
   }
 </style>

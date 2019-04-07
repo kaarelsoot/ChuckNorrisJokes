@@ -4,15 +4,17 @@
       <p>loading</p>
     </div>
     <div v-if="!$store.state.isLoading">
-      <p>ACTIVE CATEGORY: {{ $store.state.activeCategory }}</p>
-      <Jokes v-if="$store.state.activeCategory" :category="'explicit'"></Jokes>
-
-      <div id="categories" v-if="!$store.state.activeCategory">
-        <ul>
-          <div v-for="category in categories">
-            <Category :name="category"></Category>
+      <div id="joke-container" v-if="$store.state.activeCategory">
+        <Jokes :category="'explicit'"></Jokes>
+      </div>
+      <div id="category-container" v-if="!$store.state.activeCategory">
+        <h1>Chuck Norris Jokes</h1>
+        <h3>Select a category to view jokes</h3>
+        <div id="categories" class="category-container">
+          <div v-for="category in categories" class="category-item">
+            <Category :name="category" ></Category>
           </div>
-        </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -43,3 +45,16 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  .category-container {
+    /*border: 2px solid blue;*/
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+  }
+  .category-item {
+
+  }
+</style>

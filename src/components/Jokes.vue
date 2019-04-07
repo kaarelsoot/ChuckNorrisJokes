@@ -1,6 +1,9 @@
 <template>
   <div class="jokes">
-    <div @click="goBack" class="backButton">back</div>
+    <h3>Click on a joke to mark it as favorite!</h3>
+<!--    <div @click="goBack" class="backButton">-->
+      <font-awesome-icon icon="arrow-left" @click="goBack" class="backButton"/>
+<!--    </div>-->
     <Joke v-for="joke in jokes" :joke="joke"></Joke>
   </div>
 </template>
@@ -31,10 +34,19 @@ export default {
 </script>
 <style scoped>
   .jokes {
-    border: 2px solid green;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+
   }
   .backButton {
-    background-color: lightgreen;
-    margin: 5px;
+    text-transform: capitalize;
+    padding: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.5rem;
+  }
+  .backButton:hover {
+    color: darkgray;
+    cursor: pointer;
   }
 </style>
