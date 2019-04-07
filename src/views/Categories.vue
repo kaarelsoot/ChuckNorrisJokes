@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div id="loadingIndicator" v-if="$store.state.isLoading">
-      <p>loading</p>
-    </div>
+    <pulse-loader v-if="$store.state.isLoading" color="black"></pulse-loader>
     <div v-if="!$store.state.isLoading">
       <div id="joke-container" v-if="$store.state.activeCategory">
         <Jokes :category="'explicit'"></Jokes>
@@ -23,12 +21,14 @@
 <script>
 import Category from "../components/Category";
 import Jokes from "../components/Jokes";
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
   name: "categories",
   components: {
     Category,
-    Jokes
+    Jokes,
+    PulseLoader
   },
   created() {
     console.log("store dispatch");
