@@ -48,11 +48,15 @@ export default {
 
 <style scoped>
   .category-container {
-    /*border: 2px solid blue;*/
     display: flex;
     flex-wrap: wrap;
     margin-left: 2.5rem;
     margin-right: 2.5rem;
+  }
+  @media only screen and (max-width: 70.5rem) {
+    .category-container {
+      display: block;
+    }
   }
   .category-item {
 

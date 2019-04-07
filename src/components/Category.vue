@@ -36,6 +36,11 @@ export default {
     float: left;
     margin: 0.5rem;
   }
+  @media only screen and (max-width: 70.5rem) {
+    .category {
+      width: 100%;
+    }
+  }
   #name {
     text-transform: capitalize;
     font-size: 2rem;
