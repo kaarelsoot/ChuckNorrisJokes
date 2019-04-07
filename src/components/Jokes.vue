@@ -1,9 +1,7 @@
 <template>
   <div class="jokes">
     <h3>Click on a joke to mark it as favorite!</h3>
-<!--    <div @click="goBack" class="backButton">-->
       <font-awesome-icon icon="arrow-left" @click="goBack" class="backButton"/>
-<!--    </div>-->
     <Joke v-for="joke in jokes" :joke="joke"></Joke>
   </div>
 </template>
@@ -36,7 +34,6 @@ export default {
   .jokes {
     margin-left: 2.5rem;
     margin-right: 2.5rem;
-
   }
   .backButton {
     text-transform: capitalize;

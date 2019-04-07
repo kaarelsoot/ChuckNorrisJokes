@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Chuck logo" src="./assets/logo.png" id="chuck-logo">
-    <Categories></Categories>
+    <Home></Home>
   </div>
 </template>
 
@@ -38,8 +38,8 @@
   }
 </style>
 <script>
-  import Categories from "./views/Categories";
+  import Home from "./views/Home";
   export default {
-    components: {Categories}
+    components: { Home }
   }
 </script>

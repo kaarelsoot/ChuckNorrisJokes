@@ -1,10 +1,9 @@
 <template>
   <div>
     <pulse-loader v-if="$store.state.isLoading" color="black"></pulse-loader>
+
     <div v-if="!$store.state.isLoading">
-      <div id="joke-container" v-if="$store.state.activeCategory">
-        <Jokes :category="'explicit'"></Jokes>
-      </div>
+
       <div id="category-container" v-if="!$store.state.activeCategory">
         <h1>Chuck Norris Jokes</h1>
         <h3>Select a category to view jokes</h3>
@@ -13,6 +12,10 @@
             <Category :name="category" ></Category>
           </div>
         </div>
+      </div>
+
+      <div id="joke-container" v-if="$store.state.activeCategory">
+        <Jokes :category="'explicit'"></Jokes>
       </div>
     </div>
   </div>
@@ -24,24 +27,19 @@ import Jokes from "../components/Jokes";
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 
 export default {
-  name: "categories",
+  name: "home",
   components: {
     Category,
     Jokes,
     PulseLoader
   },
   created() {
-    console.log("store dispatch");
     this.$store.dispatch("fetchCategories");
-    console.log("store -> categories:");
-    console.log(this.$store.state);
   },
   computed: {
     categories() {
       return this.$store.getters.getCategories;
     }
-  },
-  methods: {
   }
 };
 </script>
@@ -57,8 +55,5 @@ export default {
     .category-container {
       display: block;
     }
-  }
-  .category-item {
-
   }
 </style>
